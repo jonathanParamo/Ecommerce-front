@@ -33,12 +33,14 @@ const Home = () => {
       >
         Notify!
       </Button>
-      <Button
-        $variant="success"
-        onClick={notify}
-      >
-        Notify!
-      </Button>
+      <Link to='/list'>
+
+        <Button
+          $variant="success"
+        >
+          list
+        </Button>
+      </Link>
       <Link to='/exa'>
         <Button $variant="dangerous">exa</Button>
       </Link>
