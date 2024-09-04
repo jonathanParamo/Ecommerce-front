@@ -13,6 +13,7 @@ import { GlobalStyles } from "./utils/global";
 import { useSelector } from 'react-redux';
 import PrefferedThemeProvider from './components/ThemeProvider';
 import Layout from "./Layout";
+import ProductManager from "./pages/ProductManager";
 
 function App() {
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -27,6 +28,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="exa" element={<Example />} />
               <Route path="list" element={<ProductListComponent />} />
+              <Route path="create-product" element={<ProductManager />} />
             </Route>
           </Routes>
         </Router>

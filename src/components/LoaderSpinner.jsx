@@ -1,14 +1,18 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, useTheme } from 'styled-components';
 
-const LoadingSpinner = () => (
-  <SpinnerWrapper>
-    <Spinner>
-      <Dot delay="0s" />
-      <Dot delay="0.1s" />
-      <Dot delay="0.2s" />
-    </Spinner>
-  </SpinnerWrapper>
-);
+const LoadingSpinner = () => {
+  const theme = useTheme();
+  
+  return (
+    <SpinnerWrapper>
+      <Spinner>
+        <Dot delay="0s" color={theme.spinnerDot1} />
+        <Dot delay="0.1s" color={theme.spinnerDot2} />
+        <Dot delay="0.2s" color={theme.spinnerDot1} />
+      </Spinner>
+    </SpinnerWrapper>
+  );
+};
 
 export default LoadingSpinner;
 
@@ -27,8 +31,8 @@ const SpinnerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.background}; /* Color de fondo del tema */
   height: 100vh;
-  background-color: #f5f5f5; /* Color de fondo */
 `;
 
 // Estilo del Spinner
@@ -42,7 +46,7 @@ const Spinner = styled.div`
 const Dot = styled.div`
   width: 16px;
   height: 16px;
-  background-color: ${({ delay }) => (parseFloat(delay) % 0.2 === 0 ? '#8A2BE2' : '#FA198B' )};
+  background-color: ${({ color }) => color};
   border-radius: 50%;
   animation: ${bounce} 1.2s infinite ease-in-out;
   animation-delay: ${({ delay }) => delay};
