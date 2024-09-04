@@ -21,11 +21,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <PrefferedThemeProvider>
-        {/* <ThemeSwitcher /> */}
         <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} /> {/* Ruta predeterminada */}
+              <Route index element={<Home />} />
               <Route path="exa" element={<Example />} />
               <Route path="list" element={<ProductListComponent />} />
             </Route>
