@@ -31,17 +31,39 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+// Acción asíncrona para crear un producto
+export const createProduct = createAsyncThunk(
+  'products/createProduct',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await fetch('http://localhost:4000/products/create-product', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al crear el producto');
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
     status: 'idle',
     error: null,
-    total: 0
+    total: 0,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Manejo de la acción fetchProducts
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading';
       })
@@ -53,6 +75,19 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      // Manejo de la acción createProduct
+      .addCase(createProduct.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        // Añadir el nuevo producto al array de productos
+        state.products.push(action.payload);
+      })
+      .addCase(createProduct.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
       });
   },
 });

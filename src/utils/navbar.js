@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 const NavbarContainer = styled.nav`
   background-color: ${({ theme }) => theme.navbarBackground};
   color: ${({ theme }) => theme.navbarText};
-  width: 220px;
-  height: 100vh;
+  width: 100%; // Cambia para que el navbar ocupe el ancho completo
+  height: 70px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   top: 0;
   left: 0;
-  box-shadow: 2px 0 4px #8b5cf6; /* Sombra leve a la derecha */
+  padding: 5px;
+  box-shadow: 2px 0 4px #8b5cf6;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -23,9 +24,10 @@ const NavbarContainer = styled.nav`
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
-    box-shadow: none; /* Elimina la sombra en pantallas pequeñas para evitar distracciones */
+    box-shadow: none; // Elimina la sombra en pantallas pequeñas para evitar distracciones
   }
 `;
+
 // Estilo para el Logo del Navbar
 const Logo = styled.div`
   font-size: 24px;
@@ -52,10 +54,9 @@ const Hamburger = styled.div`
 // Estilos para la lista de enlaces
 const NavList = styled.ul`
   list-style: none;
-  padding: 0;
+  padding-right: 30px;
   margin: 0;
   display: flex;
-  flex-direction: column;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -67,7 +68,7 @@ const NavList = styled.ul`
     position: absolute; // Absoluto en pantallas pequeñas
     top: 60px; // Espacio debajo del logo o botón
     left: 0;
-    border-top: 1px solid ${({ theme }) => theme.navbarText}; // Borde superior
+    border-top: 1px solid ${({ theme }) => theme.navbarText};
   }
 `;
 
