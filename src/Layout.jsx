@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import ThemeSwitcher from './components/ThemeSwitcher';
+import Navbar from './components/Navbar';
+import { Container } from './utils/Container';
 
 function Layout() {
   return (
-    <div>
-      <ThemeSwitcher />
+    <Container>
+      <Navbar />
       <Outlet />
-    </div>
+    </Container>
   );
 }
 

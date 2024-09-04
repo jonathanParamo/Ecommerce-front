@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, addUsers, removeUsers } from "../features/users/usersSlice";
 import { addUser, removeUser } from "../features/user/userSlice";
 import Button from "../components/Button";
+import styled from "styled-components";
 
 function Example() {
   const dispatch = useDispatch();
@@ -39,29 +40,45 @@ function Example() {
   };
 
   return (
-    <div>
-      <h1>Users</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
+    <MainContainer>
+      <Section>
+        <h1>Users</h1>
+        <ul>
+          {users.map(user => (
+            <li key={user.id}>{user.name}</li>
+          ))}
+        </ul>
 
-      <h2>Persisted User</h2>
-      <div>
-        {user ? (
-          <div>
-            <p>Usuario: {user.name}</p>
-            <button onClick={handleRemoveUser}>Delete User</button>
-          </div>
-        ) : (
-          <p>No persisted user found</p>
-        )}
-      </div>
+        <h2>Persisted User</h2>
+        <div>
+          {user ? (
+            <div>
+              <p>Usuario: {user.name}</p>
+              <button onClick={handleRemoveUser}>Delete User</button>
+            </div>
+          ) : (
+            <p>No persisted user found</p>
+          )}
+        </div>
 
-      <Button $variant="primary" onClick={handleAddUser}>Add persisted user</Button>
-    </div>
+        <Button $variant="primary" onClick={handleAddUser}>Add persisted user</Button>
+      </Section>
+    </MainContainer>
   );
 }
 
 export default Example;
+
+const MainContainer = styled.div`
+  display: flex;/* Oculta el overflow en el contenedor principal */
+`;
+
+const Section = styled.section`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px; /* Espacio entre los elementos */
+  color: ${({ theme }) => theme.text};
+  padding: 20px; /* Espacio interno del section */
+`;
