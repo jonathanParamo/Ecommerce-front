@@ -6,7 +6,6 @@ const NavbarContainer = styled.nav`
   background-color: ${({ theme }) => theme.navbarBackground};
   color: ${({ theme }) => theme.navbarText};
   width: 100%; // Cambia para que el navbar ocupe el ancho completo
-  height: 70px;
   display: flex;
   justify-content: space-between;
   top: 0;
@@ -16,7 +15,6 @@ const NavbarContainer = styled.nav`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: auto;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -61,12 +59,12 @@ const NavList = styled.ul`
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
-    max-height: ${props => (props.isOpen ? '300px' : '0')};
+    height: ${({ $isOpen }) => ($isOpen ? "auto" : "0")};
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
     background-color: ${({ theme }) => theme.navbarBackground};
-    position: absolute; // Absoluto en pantallas pequeñas
-    top: 60px; // Espacio debajo del logo o botón
+    position: absolute;
+    top: 60px;
     left: 0;
     border-top: 1px solid ${({ theme }) => theme.navbarText};
   }
@@ -74,10 +72,9 @@ const NavList = styled.ul`
 
 // Estilos para los elementos de la lista
 const NavItem = styled.li`
-  margin: 10px 0;
+  margin: 5px 0;
 
   @media (max-width: 768px) {
-    padding: 10px 20px;
     width: 100%;
   }
 `;

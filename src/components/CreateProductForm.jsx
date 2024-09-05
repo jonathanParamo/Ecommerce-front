@@ -55,9 +55,7 @@ function CreateProductForm() {
 
     try {
       await dispatch(createProduct(formData)).unwrap();
-      console.log('Producto creado');
 
-      // Resetear el formulario después de la creación del producto
       setName('');
       setDescription('');
       setPriceCOP('');

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ThemeSwitcherContainer = styled.div`
   width: 60px;
   height: 30px;
-  background-color: ${props => props.background};
+  background: ${({ $background }) => $background};
   border-radius: 30px;
   display: flex;
   align-items: center;

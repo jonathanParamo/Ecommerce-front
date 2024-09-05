@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import PrefferedThemeProvider from './components/ThemeProvider';
 import Layout from "./Layout";
 import ProductManager from "./pages/ProductManager";
+import CategoriesManager from "./pages/CategoryManager";
 
 function App() {
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -29,6 +30,7 @@ function App() {
               <Route path="exa" element={<Example />} />
               <Route path="list" element={<ProductListComponent />} />
               <Route path="create-product" element={<ProductManager />} />
+              <Route path="category-manager" element={<CategoriesManager />} />
             </Route>
           </Routes>
         </Router>
