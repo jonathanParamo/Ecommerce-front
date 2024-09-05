@@ -14,6 +14,52 @@ export const fetchCategories = createAsyncThunk(
   }
 );
 
+export const createCategory = createAsyncThunk(
+  'categories/createCategory',
+  async (categoryData, { rejectWithValue }) => {
+    try {
+      const response = await fetch('http://localhost:4000/category/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(categoryData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al crear la categoría');
+      }
+
+      return await response.json(); // Devuelve los datos de la categoría creada
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateCategory = createAsyncThunk(
+  'categories/updateCategory',
+  async ({ id, name, subcategories }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:4000/category/categories/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, subcategories }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar la categoría');
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState: {
@@ -34,7 +80,13 @@ const categoriesSlice = createSlice({
       .addCase(fetchCategories.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        const index = state.categories.findIndex((cat) => cat._id === action.payload._id);
+        if (index !== -1) {
+          state.categories[index] = action.payload;
+        }
+      })
   },
 });
 

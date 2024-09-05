@@ -17,7 +17,7 @@ const Navbar = () => {
       <Hamburger onClick={toggleMenu}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </Hamburger>
-      <NavList isOpen={isOpen}>
+      <NavList $isOpen={isOpen}>
         {navLinks.map((link, index) => (
           <NavItem key={index}>
             <NavLink to={link.path}>{link.label}</NavLink>
