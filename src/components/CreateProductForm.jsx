@@ -15,11 +15,11 @@ function CreateProductForm() {
   const [quantity, setQuantity] = useState('');
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
-  const [discount, setDiscount] = useState();
+  const [discount, setDiscount] = useState(0);
   const [discountStartDate, setDiscountStartDate] = useState('');
   const [discountEndDate, setDiscountEndDate] = useState('');
   const [images, setImages] = useState([]);
-
+  
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
 
@@ -35,21 +35,27 @@ function CreateProductForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const discountObject = {
+      value: parseFloat(discount),
+      startDate: new Date(discountStartDate).toISOString(),
+      endDate: new Date(discountEndDate).toISOString()
+    };
+
     const formData = new FormData();
     formData.append('name', name);
-    formData.append('priceCOP', priceCOP);
+    formData.append('priceCOP', parseFloat(priceCOP)); // Convertir a número
     formData.append('categoryId', categoryId);
     formData.append('subcategory', subcategory);
     formData.append('description', description);
-    formData.append('quantity', quantity);
+    formData.append('quantity', parseInt(quantity, 10)); // Convertir a entero
     formData.append('sizes', sizes);
     formData.append('colors', colors);
-    formData.append('discount', discount);
-    formData.append('discountStartDate', discountStartDate);
-    formData.append('discountEndDate', discountEndDate);
-
-    // Añadir las imágenes al formData
-    images.forEach((image, index) => {
+    formData.append('discount', JSON.stringify({
+      value: parseFloat(discount), // Convertir a número
+      startDate: new Date(discountStartDate).toISOString(),
+      endDate: new Date(discountEndDate).toISOString()
+    }));
+    images.forEach((image) => {
       formData.append('images', image);
     });
 
@@ -206,7 +212,7 @@ function CreateProductForm() {
           required
         />
 
-      <ImagePreview images={images.map(img => URL.createObjectURL(img))} setImages={setImages} />
+        <ImagePreview images={images.map(img => URL.createObjectURL(img))} setImages={setImages} />
       </DescriptionContainer>
 
       <ContainerButton>

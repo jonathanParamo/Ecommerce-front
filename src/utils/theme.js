@@ -11,7 +11,13 @@ export const lightTheme = {
     secondText: 'rgb(88 28 135)',
     buttonBackground1: 'rgb(91 33 182)',
     buttonBackground2: 'rgb(239 68 68)',
-    buttonHover: 'rgb(76 29 149)'
+    buttonHover: 'rgb(76 29 149)',
+    bg2: 'rgb(245 208 254)',
+    bg: 'rgb(196 181 253)',
+    bgA: 'rgb(67 56 202)',
+    bg2A: 'rgb(49 46 129)',
+    secondTextA: '#f5f5f5',
+
 };
 
 export const darkTheme = {
@@ -26,5 +32,11 @@ export const darkTheme = {
   spinnerDot2: '#ff007f',
   secondText: '#f5f5f5',
   buttonBackground1: 'rgb(30 41 59)',
-  buttonHover: 'rgb(15 23 42)'
+  buttonHover: 'rgb(15 23 42)',
+  bg: 'rgb(67 56 202)',
+  bg2: 'rgb(49 46 129)',
+  bg2A: 'rgb(245 208 254)',
+  bgA: 'rgb(196 181 253)',
+  secondTextA: 'rgb(88 28 135)',
+
 }

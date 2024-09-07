@@ -15,6 +15,8 @@ import PrefferedThemeProvider from './components/ThemeProvider';
 import Layout from "./Layout";
 import ProductManager from "./pages/ProductManager";
 import CategoriesManager from "./pages/CategoryManager";
+import EditProductForm from "./components/EditProductForm";
+import LowStockProducts from "./pages/LowStockProducts";
 
 function App() {
   const theme = useSelector((state) => state.theme.currentTheme);
@@ -31,6 +33,8 @@ function App() {
               <Route path="list" element={<ProductListComponent />} />
               <Route path="create-product" element={<ProductManager />} />
               <Route path="category-manager" element={<CategoriesManager />} />
+              <Route path="edit-product/:productId" element={<EditProductForm />} />
+              <Route path="low-stock-products" element={<LowStockProducts />} />
             </Route>
           </Routes>
         </Router>

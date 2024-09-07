@@ -14,7 +14,7 @@ export const Title = styled.h1`
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.titleColor}; // Cambia el color dependiendo del tema
+  color: ${({ theme }) => theme.titleColor};
 
   // Efecto de sombra solo para el tema oscuro
   ${({ theme }) => theme.mode === 'dark' && `

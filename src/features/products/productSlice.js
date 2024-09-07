@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (params) => {
-    const { page = 1, limit = 20, category, subcategory } = params; // Valores predeterminados
+    const { page = 1, limit = 20, category, subcategory } = params;
 
     // Construye la URL con los parámetros de consulta
     const url = new URL('http://localhost:4000/products/get-products');
@@ -51,6 +51,61 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
+
+export const updateProduct = createAsyncThunk(
+  'products/updateProduct',
+  async ({ productId, formData }, { rejectWithValue }) => {
+
+    try {
+      const response = await fetch(`http://localhost:4000/products/update-product/${productId}`, {
+        method: 'PUT',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar el producto');
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchLowStockProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async (params) => {
+    const { page = 1, limit = 20, category, subcategory } = params;
+
+    // Construye la URL con los parámetros de consulta
+    const url = new URL('http://localhost:4000/products/low-stock');
+    url.searchParams.append('limit', limit);
+    url.searchParams.append('page', page);
+    if (category) {
+      url.searchParams.append('category', category);
+    }
+
+    if (subcategory) {
+      url.searchParams.append('subcategory', subcategory);
+    }
+
+    // Realiza la solicitud a la API
+    const response = await fetch(url);
+
+    // Manejo de errores si la respuesta no es exitosa
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    // Convierte la respuesta a JSON
+    const data = await response.json();
+    return data;
+  }
+);
+
+
+
 
 const productsSlice = createSlice({
   name: 'products',

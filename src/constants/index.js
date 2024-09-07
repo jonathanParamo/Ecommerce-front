@@ -4,4 +4,5 @@ export const navLinks = [
   { path: '/list', label: 'Product List' },
   { path: '/create-product', label: 'create product' },
   { path: '/category-manager', label: 'Category Manager' },
+  { path: '/low-stock-products', label: 'Low stock products' },
 ];

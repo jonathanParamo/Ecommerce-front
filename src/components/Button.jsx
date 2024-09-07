@@ -15,6 +15,10 @@ const Button = styled.button`
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
 
+  @media (max-width: 768px) {
+    width: 70%;
+  }
+
   &:hover {
     background-color: ${props => colors[props.$variant]?.hoverBackgroundColor || "#e0e0e0"};
     border-color: ${props => colors[props.$variant]?.hoverBorder || "#000"};

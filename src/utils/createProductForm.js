@@ -1,18 +1,30 @@
 import styled from 'styled-components';
 
+export const MainContainer = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`
+
 export const FormContainer = styled.form`
   background-color: ${({ theme }) => theme.cardBackground};
   color: ${({ theme }) => theme.cardText};
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
-  padding: 30px;
+  width: 80%;
+  padding: 60px;
   border-radius: 10px;
   justify-content: space-between;
 
   @media (max-width: 768px) {
     justify-content: center;
     flex-direction: column;
+    width: 70%;
+
   }
 `;
 
@@ -95,4 +107,5 @@ export const ContainerButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px;
 `
