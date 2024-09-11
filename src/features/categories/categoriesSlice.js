@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchCategories = createAsyncThunk(
   'categories/fetchCategories',
   async () => {
-    const response = await fetch('http://localhost:4000/category/categories');
+    const response = await fetch('http://localhost:4000/api/v1/categories/categories');
 
     if (!response.ok) {
       throw new Error('Error al obtener las categorías');
@@ -18,7 +18,7 @@ export const createCategory = createAsyncThunk(
   'categories/createCategory',
   async (categoryData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:4000/category/create', {
+      const response = await fetch('http://localhost:4000/api/v1/category/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const createCategory = createAsyncThunk(
         throw new Error('Error al crear la categoría');
       }
 
-      return await response.json(); // Devuelve los datos de la categoría creada
+      return await response.json();
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -41,7 +41,7 @@ export const updateCategory = createAsyncThunk(
   'categories/updateCategory',
   async ({ id, name, subcategories }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:4000/category/categories/${id}`, {
+      const response = await fetch(`http://localhost:4000/api/v1/category/categories/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
