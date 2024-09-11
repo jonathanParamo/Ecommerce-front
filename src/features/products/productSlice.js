@@ -6,8 +6,7 @@ export const fetchProducts = createAsyncThunk(
   async (params) => {
     const { page = 1, limit = 20, category, subcategory } = params;
 
-    // Construye la URL con los parámetros de consulta
-    const url = new URL('http://localhost:4000/products/get-products');
+    const url = new URL('http://localhost:4000/api/v1/products/get-products');
     url.searchParams.append('page', page);
     url.searchParams.append('limit', limit);
     if (category) {
@@ -18,7 +17,7 @@ export const fetchProducts = createAsyncThunk(
       url.searchParams.append('subcategory', subcategory);
     }
 
-    // Realiza la solicitud a la API
+    // solicitud a la API
     const response = await fetch(url);
 
     // Manejo de errores si la respuesta no es exitosa
@@ -31,12 +30,12 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-// Acción asíncrona para crear un producto
+// Acción para crear un producto
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:4000/products/create-product', {
+      const response = await fetch('http://localhost:4000/api/v1/products/create-product', {
         method: 'POST',
         body: formData,
       });
@@ -57,7 +56,7 @@ export const updateProduct = createAsyncThunk(
   async ({ productId, formData }, { rejectWithValue }) => {
 
     try {
-      const response = await fetch(`http://localhost:4000/products/update-product/${productId}`, {
+      const response = await fetch(`http://localhost:4000/api/v1/products/update-product/${productId}`, {
         method: 'PUT',
         body: formData,
       });
@@ -79,7 +78,7 @@ export const fetchLowStockProducts = createAsyncThunk(
     const { page = 1, limit = 20, category, subcategory } = params;
 
     // Construye la URL con los parámetros de consulta
-    const url = new URL('http://localhost:4000/products/low-stock');
+    const url = new URL('http://localhost:4000/api/v1/products/low-stock');
     url.searchParams.append('limit', limit);
     url.searchParams.append('page', page);
     if (category) {
