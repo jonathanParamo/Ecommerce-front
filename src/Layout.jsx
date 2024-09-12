@@ -1,13 +1,13 @@
+// Layout.jsx
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import { Container } from './utils/Container';
 
 function Layout() {
   return (
-    <Container>
+    <div className="h-screen flex flex-col m-0 overflow-x-hidden">
       <Navbar />
       <Outlet />
-    </Container>
+    </div>
   );
 }
 

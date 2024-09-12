@@ -4,7 +4,6 @@ import { fetchProducts } from '../features/products/productSlice';
 import ProductItem from './ProducItem';
 import Pagination from './Pagination';
 import EditProductForm from './EditProductForm';
-import styled from 'styled-components';
 import LoadingSpinner from './LoaderSpinner';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,9 +43,9 @@ const ProductList = () => {
   const totalPages = Math.ceil(total / productsPerPage);
 
   return (
-    <Container>
-      <h1>Product List</h1>
-      <ProductListWrapper>
+    <div className="p-5 flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">Product List</h1>
+      <div className="flex justify-center flex-wrap gap-4 text-[#4F1271]">
         {products.map(product => (
           <ProductItem
             key={product._id}
@@ -54,7 +53,7 @@ const ProductList = () => {
             onEdit={() => handleEditClick(product)}
           />
         ))}
-      </ProductListWrapper>
+      </div>
 
       <Pagination
         currentPage={currentPage}
@@ -63,39 +62,16 @@ const ProductList = () => {
       />
 
       {selectedProduct && (
-        <EditProductContainer>
-          <h2>Editar Producto</h2>
+        <div className="mt-5 p-5 border border-gray-300 rounded bg-gray-50">
+          <h2 className="text-xl font-semibold mb-3">Editar Producto</h2>
           <EditProductForm
             product={selectedProduct}
             onClose={handleCloseEditForm}
           />
-        </EditProductContainer>
+        </div>
       )}
-    </Container>
+    </div>
   );
 };
 
 export default ProductList;
-
-// Styled Components
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ProductListWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  color: #4F1271;
-`;
-
-const EditProductContainer = styled.div`
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-`;
