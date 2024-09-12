@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom';
 import ThemeToggleButton from './ThemeSwitcher';
 import SubMenu from './SubMenu';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
 
   return (
-    <nav className="w-full bg-purple-800 dark:bg-[#000000] flex flex-col items-center text-black dark:text-white">
-      <div className="px-4 py-4 w-full flex justify-between lg:px-5 items-center dark:bg-[#333333]">
+    <nav className="fixed top-0 left-0 w-full h-[72px] bg-purple-800 dark:bg-black flex items-center justify-between shadow-md z-50">
+      <div className="w-full h-[72px] flex justify-between lg:px-5 items-center dark:bg-[#f5f5f515]">
         <div className="md:hidden w-2/3 flex justify-around items-center">
           <div className="flex justify-center items-center rounded text-white hover:bg-purple-700
             border border-transparent dark:hover:border-cyan-400 rounde rounded-full dark:hover:bg-transparent
             dark:hover:text-cyan-400  p-1 hover:cursor-pointer transform duration-500 ease-out"
           >
           </div>
-        <SubMenu />
         </div>
-
+        <SubMenu />
+        <SearchBar />
         <Link href="/promotions" className="hidden md:block text-white font-roboto dark:text-cyan-300 dark:hover:text-cyan-500 text-lg transform duration-500 ease-out">
           Promotions
         </Link>

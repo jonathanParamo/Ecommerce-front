@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="exa" element={<Example />} />
-          <Route path="list" element={<ProductListComponent />} />
+          <Route path="product-list" element={<ProductListComponent />} />
           <Route path="create-product" element={<ProductManager />} />
           <Route path="category-manager" element={<CategoriesManager />} />
           <Route path="edit-product/:productId" element={<EditProductForm />} />

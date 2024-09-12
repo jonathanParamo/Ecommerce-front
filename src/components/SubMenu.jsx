@@ -30,31 +30,40 @@ function SubMenu() {
       }
     };
 
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight) {
+        // Si el usuario se desplaza más allá del h-screen, cerramos el menú
+        setIsSubMenuOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div
-      className={`flex flex-col items-end ${isSubMenuOpen ? 'bg-purple-800 dark:bg-[#f5f5f530]' : 'bg-transparent'}
+      className={`flex flex-col items-end ${isSubMenuOpen ? 'bg-purple-800 dark:bg-transparent' : 'bg-transparent'}
       p-2 transition-all duration-500 ease-out`}
       ref={menuRef}
     >
       <button
         onClick={handleSubMenuToggle}
         className="flex items-center justify-center text-white font-bold rounded transition-all
-        duration-500 ease-out hover:bg-purple-700 dark:text-cyan-500"
+        duration-500 ease-out"
       >
         {isSubMenuOpen ? <FaTimes className='w-6 h-6' /> : <FaBars className='w-6 h-6' />}
       </button>
 
       <div
-        className={`fixed top-[116px] left-0 h-[calc(100vh-116px)] bg-purple-800 dark:bg-black transition-transform duration-1000 ease-out ${isSubMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-[72px] left-0 h-[calc(100vh-72px)] bg-purple-800 dark:bg-black transition-transform duration-1000 ease-out ${isSubMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         {isSubMenuOpen && (
-          <ul className="bg-purple-800 dark:bg-black px-4 shadow-lg h-full">
+          <ul className="bg-purple-800 dark:bg-[#f5f5f515] px-4 shadow-lg h-full">
             {navLinks.map((link) => (
               <li
                 key={link.path || link.label}
@@ -73,7 +82,7 @@ function SubMenu() {
                       <FaChevronRight className="ml-2" />
                     </button>
                     {openCategory === link.label && (
-                      <ul className="absolute left-full top-0 w-48 bg-purple-800 dark:bg-black pl-4 p-2 rounded-r shadow-lg-r space-y-1">
+                      <ul className="absolute left-full top-0 w-48 bg-purple-800 dark:bg-[#141414] pl-4 p-2 rounded-r shadow-lg-r space-y-1">
                         {link.subcategories.map((subLink) => (
                           <li key={subLink.path}>
                             <Link

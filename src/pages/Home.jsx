@@ -27,7 +27,7 @@ const Home = () => {
         <button onClick={notify}>
           Notify!
         </button>
-        <Link to="/list">
+        <Link to="/product-list">
           <button>list</button>
         </Link>
         <Link to="/exa">

@@ -79,7 +79,7 @@ function EditProductForm() {
 
     try {
       await dispatch(updateProduct({ productId: product._id, formData })).unwrap();
-      navigate('/list');
+      navigate('/product-list');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -91,7 +91,7 @@ function EditProductForm() {
 
   return (
     <div className="w-full h-auto flex justify-center items-center mt-8 mb-8">
-      <form 
+      <form
         onSubmit={handleSubmit}
         className="bg-white text-gray-800 flex flex-wrap w-4/5 p-12 rounded-lg justify-between shadow-md"
       >

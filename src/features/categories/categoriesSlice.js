@@ -41,7 +41,7 @@ export const updateCategory = createAsyncThunk(
   'categories/updateCategory',
   async ({ id, name, subcategories }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/category/categories/${id}`, {
+      const response = await fetch(`http://localhost:4000/api/v1/categories/categories/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
