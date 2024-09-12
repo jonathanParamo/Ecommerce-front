@@ -5,7 +5,6 @@ import storage from "redux-persist/lib/storage";
 import usersReducer from "../features/users/usersSlice";
 import userReducer from "../features/user/userSlice"
 import productReducer from "../features/products/productSlice";
-import themeReducer from "../features/theme/themeReducer";
 import categoriesReducer from "../features/categories/categoriesSlice";
 
 const persistConfig = {
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
   users: usersReducer,
   user: userReducer,
   products: productReducer,
-  theme: themeReducer,
   categories: categoriesReducer
 });
 

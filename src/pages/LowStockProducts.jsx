@@ -1,7 +1,6 @@
 import { fetchLowStockProducts } from "../features/products/productSlice";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import LoadingSpinner from "../components/LoaderSpinner";
 import ProductItem from "../components/ProducItem";
 import EditProductForm from "../components/EditProductForm";
@@ -31,90 +30,40 @@ const LowStockProducts = () => {
   }
 
   if (loading === 'failed') {
-    return <ErrorMessage>Error: {error}</ErrorMessage>;
+    return <div className="text-red-600 text-lg">Error: {error}</div>;
   }
 
   return (
-    <Container>
-      <Title>Productos con Bajo Stock</Title>
-      <ProductListWrapper>
+    <div className="p-5 flex flex-col items-center">
+      <h1 className="text-2xl font-semibold mb-5">Productos con Bajo Stock</h1>
+      <div className="flex justify-center flex-wrap gap-4 w-full max-w-5xl">
         {products.length === 0 ? (
-          <NoProductsMessage>No hay productos con bajo stock.</NoProductsMessage>
+          <p className="text-gray-600 text-lg">No hay productos con bajo stock.</p>
         ) : (
-          <ProductList>
+          <ul className="list-none p-0 flex flex-wrap justify-around w-full">
             {products.map((product) => (
-              <li key={product._id}>
+              <li key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-4">
                 <ProductItem
                   product={product}
                   onEdit={() => handleEditClick(product)}
                 />
               </li>
             ))}
-          </ProductList>
+          </ul>
         )}
-      </ProductListWrapper>
+      </div>
 
       {selectedProduct && (
-        <EditProductContainer>
-          <h2>Editar Producto</h2>
+        <div className="mt-5 p-5 border border-gray-300 rounded bg-gray-100">
+          <h2 className="text-xl font-semibold mb-4">Editar Producto</h2>
           <EditProductForm
             product={selectedProduct}
             onClose={handleCloseEditForm}
           />
-        </EditProductContainer>
+        </div>
       )}
-    </Container>
+    </div>
   );
 };
 
 export default LowStockProducts;
-
-// Styled Components
-
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
-const ProductListWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  width: 100%;
-  max-width: 1200px;
-`;
-
-const ProductList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  width: 100%;
-`;
-
-const NoProductsMessage = styled.p`
-  color: #6c757d;
-  font-size: 18px;
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  font-size: 18px;
-`;
-
-const EditProductContainer = styled.div`
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-`;

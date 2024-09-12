@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import { FormContainer, DescriptionContainer, ContainerButton, MainContainer } from '../utils/createProductForm';
-import Button from './Button';
-import ImagePreview from './ImagePreview';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProduct } from '../features/products/productSlice';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import ImagePreview from './ImagePreview';
 import FormField from './FormField';
+import { updateProduct } from '../features/products/productSlice';
 
 function EditProductForm() {
   const { productId } = useParams();
@@ -93,8 +90,11 @@ function EditProductForm() {
   }
 
   return (
-    <MainContainer>
-      <FormContainer onSubmit={handleSubmit}>
+    <div className="w-full h-auto flex justify-center items-center mt-8 mb-8">
+      <form 
+        onSubmit={handleSubmit}
+        className="bg-white text-gray-800 flex flex-wrap w-4/5 p-12 rounded-lg justify-between shadow-md"
+      >
         <FormField
           label="Nombre:"
           type="text"
@@ -134,13 +134,14 @@ function EditProductForm() {
           ]}
           required
         />
-          <FormField
-            label="Cantidad:"
-            type="number"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            required
-          />
+
+        <FormField
+          label="Cantidad:"
+          type="number"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          required
+        />
 
         <FormField
           label="Colores (separados por coma):"
@@ -180,13 +181,13 @@ function EditProductForm() {
           onChange={(e) => setDiscountEndDate(e.target.value)}
         />
 
-          <FormField
-            label="Descripción:"
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+        <FormField
+          label="Descripción:"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
 
         <FormField
           label="Imágenes:"
@@ -196,17 +197,17 @@ function EditProductForm() {
           onChange={handleImageChange}
         />
 
-        <DescriptionContainer>
+        <div className="w-full flex flex-col mb-4">
           <ImagePreview images={images.length > 0 ? images : originalImages} setImages={setImages} />
-        </DescriptionContainer>
+        </div>
 
-        <ContainerButton>
-          <Button $variant="secondary" type="submit">
+        <div className="w-full flex justify-center items-center mt-4">
+          <button type="submit">
             Actualizar Producto
-          </Button>
-        </ContainerButton>
-      </FormContainer>
-    </MainContainer>
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, addUsers, removeUsers } from "../features/users/usersSlice";
 import { addUser, removeUser } from "../features/user/userSlice";
-import Button from "../components/Button";
-import styled from "styled-components";
 
 function Example() {
   const dispatch = useDispatch();
@@ -24,8 +22,8 @@ function Example() {
 
   // Add a user
   const handleAddUser = () => {
-    const newUser = { id: 133, name: "Anonimous" };
-    if(!user) {
+    const newUser = { id: 133, name: "Anonymous" };
+    if (!user) {
       dispatch(addUsers(newUser));
       dispatch(addUser(newUser));
     }
@@ -33,52 +31,43 @@ function Example() {
 
   // Delete a user
   const handleRemoveUser = () => {
-    if(user) {
+    if (user) {
       dispatch(removeUser(user.id));
       dispatch(removeUsers(user.id));
     }
   };
 
   return (
-    <MainContainer>
-      <Section>
-        <h1>Users</h1>
-        <ul>
-          {users.map(user => (
-            <li key={user.id}>{user.name}</li>
+    <div className="h-screen flex overflow-hidden">
+      <section className="flex-1 flex flex-col items-start gap-2 p-5 text-gray-800">
+        <h1 className="text-xl font-bold">Users</h1>
+        <ul className="list-disc pl-5">
+          {users.map((user) => (
+            <li key={user.id} className="py-1">{user.name}</li>
           ))}
         </ul>
 
-        <h2>Persisted User</h2>
-        <div>
+        <h2 className="text-lg font-semibold mt-4">Persisted User</h2>
+        <div className="mt-2">
           {user ? (
             <div>
-              <p>Usuario: {user.name}</p>
-              <button onClick={handleRemoveUser}>Delete User</button>
+              <p className="text-md">Usuario: {user.name}</p>
+              <button
+                onClick={handleRemoveUser}
+                className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition duration-300"
+              >
+                Delete User
+              </button>
             </div>
           ) : (
             <p>No persisted user found</p>
           )}
         </div>
 
-        <Button $variant="primary" onClick={handleAddUser}>Add persisted user</Button>
-      </Section>
-    </MainContainer>
+        <button onClick={handleAddUser}>Add persisted user</button>
+      </section>
+    </div>
   );
 }
 
 export default Example;
-
-const MainContainer = styled.div`
-  display: flex;/* Oculta el overflow en el contenedor principal */
-`;
-
-const Section = styled.section`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px; /* Espacio entre los elementos */
-  color: ${({ theme }) => theme.text};
-  padding: 20px; /* Espacio interno del section */
-`;

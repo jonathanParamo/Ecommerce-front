@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import Button from "../components/Button";
 import "react-toastify/dist/ReactToastify.css";
-import styled from "styled-components";
 
 const Home = () => {
   const [message, setMessage] = useState(0);
@@ -20,39 +18,26 @@ const Home = () => {
   };
 
   return (
-    <MainContainer>
-      <Section>
+    <div className="h-screen bg-gray-800 dark:bg-blue-100">
+      <section className="">
         <h1>Hello, this is an example.</h1>
-        <Button $variant="primary" onClick={notify}>
+        <button  onClick={notify}>
           Notify!
-        </Button>
-        <Button $variant="secondary" onClick={notify}>
+        </button>
+        <button onClick={notify}>
           Notify!
-        </Button>
+        </button>
         <Link to="/list">
-          <Button $variant="success">list</Button>
+          <button>list</button>
         </Link>
         <Link to="/exa">
-          <Button $variant="dangerous">exa</Button>
+          <button>exa</button>
         </Link>
         <ToastContainer />
-      </Section>
-    </MainContainer>
+      </section>
+    </div>
   );
 };
 
 export default Home;
 
-// Styled Components
-const MainContainer = styled.div`
-  height: 100vh;
-  overflow-y: auto;
-`;
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px; /* Espacio entre los elementos */
-  color: ${({ theme }) => theme.text}; /* Usa el color de texto del tema */
-`;

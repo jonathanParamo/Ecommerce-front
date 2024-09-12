@@ -1,35 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setTheme } from '../features/theme/themeActions';
-import { darkTheme, lightTheme } from '../utils/theme';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import { ThemeSwitcherContainer } from '../utils/themeSwitcherContainer';
-import { Slider } from './Slider';
+import { useTheme } from './ThemeProvider';
+import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 
-const ThemeSwitcher = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector((state) => state.theme.currentTheme);
-
-  const isLightTheme = theme === lightTheme;
-
-  const toggleTheme = () => {
-    const newTheme = isLightTheme ? darkTheme : lightTheme;
-    dispatch(setTheme(newTheme));
-  };
+const ThemeToggleButton = () => {
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <ThemeSwitcherContainer
-      $background={isLightTheme ? '#000000' : 'rgb(232 121 249)'}
+    <button
       onClick={toggleTheme}
+      className="relative w-16 md:w-20 h-10 md:w-[72px] md:h-12 bg-gray-700 rounded-full p-1 flex items-center transition-all duration-500 focus:outline-none"
     >
-      <Slider
-        $background={isLightTheme ? '#fcbf49' : '#000000'}
-        $color={isLightTheme ? '#000000' : '#fcbf49'}
-        $isDarkMode={!isLightTheme}
-      >
-        {isLightTheme ? <FaSun /> : <FaMoon />}
-      </Slider>
-    </ThemeSwitcherContainer>
+      <BsFillMoonStarsFill className={`absolute left-0 w-6 h-6 md:w-8 md:h-8 pl-1 text-yellow-500 ${theme === 'dark' ? 'block' : 'hidden'}`} />
+      <span
+        className={`${
+          theme === 'dark' ? 'translate-x-6 md:translate-x-8' : 'translate-x-1.5'
+        } inline-block w-6 h-6 bg-[#f5f5f570] dark:bg-blue-200 rounded-full shadow-md transform transition-transform duration-500 dark:mr-0`}
+      ></span>
+      <BsFillSunFill className={`absolute right-0 pr-1 w-6 h-6 md:w-8 md:h-8 text-yellow-500 ${theme === 'dark' ? 'hidden' : 'block'}`} />
+    </button>
   );
 };
 
-export default ThemeSwitcher;
+export default ThemeToggleButton;

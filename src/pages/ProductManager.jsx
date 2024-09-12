@@ -1,23 +1,12 @@
 import CreateProductForm from '../components/CreateProductForm';
-import styled from 'styled-components';
 
 function ProductManager() {
   return (
-    <Container>
-      <h1 style={{marginBottom: '15px', marginTop: '5px'}}>Crear Producto</h1>
+    <div className="p-5 w-9/12 mx-auto flex flex-col items-center text-gray-800">
+      <h1 className="text-2xl font-bold mb-4 mt-1">Crear Producto</h1>
       <CreateProductForm />
-    </Container>
+    </div>
   );
 }
 
 export default ProductManager;
-
-const Container = styled.div`
-  padding: 20px;
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: ${({ theme }) => theme.navbartext};
-`;
