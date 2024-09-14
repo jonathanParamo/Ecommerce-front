@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 const Home = () => {
   const [message, setMessage] = useState(0);
 
-  // Function to show a toast notification
   const notify = () => {
     if (message === 1) {
       toast.error("Something went wrong!");
@@ -18,16 +17,21 @@ const Home = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-800 dark:bg-blue-100">
-      <section className="">
+    <div className="h-screen bg-white dark:bg-black text-black dark:text-white">
+      <section className="p-2 flex flex-col md:flex-row justify-between">
         <h1>Hello, this is an example.</h1>
-        <button  onClick={notify}>
+        <button
+          className="w-44 h-12 border-2 border-purple-800 hover:border-purple-900"
+          onClick={notify}>
           Notify!
         </button>
-        <button onClick={notify}>
+        <button
+          className="w-44 h-12 border-2 border-blue-800 hover:border-blue-900"
+
+          onClick={notify}>
           Notify!
         </button>
-        <Link to="/list">
+        <Link to="/product-list">
           <button>list</button>
         </Link>
         <Link to="/exa">

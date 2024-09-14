@@ -27,7 +27,9 @@ const ProductItem = ({ product, onEdit }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-between border border-gray-300 rounded-lg p-4 w-56 min-h-[300px] text-center shadow-md bg-gray-100 m-2">
+      <div className="flex flex-col justify-between border border-gray-200 rounded-lg
+        p-4 w-56 min-h-[300px] text-center shadow-md bg-gray-100 m-2 dark:bg-[#f5f5f515] dark:border-transparent
+        dark:hover:border-cyan-400 transition-all duration-500 ease-out hover:border-purple-800">
         {product.images.length > 0 && (
           <img
             src={product.images[0]}
@@ -36,16 +38,19 @@ const ProductItem = ({ product, onEdit }) => {
             className="w-full h-36 object-cover rounded-lg cursor-pointer"
           />
         )}
-        <h2 className="text-lg font-semibold text-gray-800 mt-2 mb-1 truncate">{product.name}</h2>
-        <p className="text-gray-700">Price: ${product.discountedPrice}</p>
-        {discount > 0 && <p className="text-red-600">Discount: {discount}%</p>}
-        <p className="text-gray-600">Category: {product.subcategory}</p>
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-white font-roboto mt-2 mb-1 truncate">{product.name}</h2>
+        <p className="text-gray-700 dark:text-white font-nunito">Price: ${product.discountedPrice}</p>
+        {discount > 0 && <p className="text-gray-700 dark:text-white font-openSands">Discount: {discount}%</p>}
+        <p className="text-gray-600 dark:text-white font-openSands pt-1 pb-2">Category: {product.subcategory}</p>
         <button
           onClick={onEdit}
-          className="w-full mt-auto py-2 px-4 border-none rounded-md text-white bg-blue-600 cursor-pointer hover:bg-blue-700 transition-colors"
+          className="w-full mt-auto py-2 px-4 border-2 border-transparent rounded-md text-white bg-purple-600 cursor-pointer
+            dark:bg-purple-600 dark:bg-transparent dark:border-cyan-950 hover:bg-purple-700 dark:hover:border-cyan-500
+            transition-all duration-500 ease-out"
         >
-          Edit
+          Editar
         </button>
+
       </div>
 
       <Modal

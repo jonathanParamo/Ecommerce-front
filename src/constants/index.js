@@ -4,8 +4,9 @@ export const navLinks = [
   {
     label: 'Products',  // Categoría principal
     subcategories: [
-      { path: '/create-product', label: 'Create Product' },
-      { path: '/low-stock-products', label: 'Low Stock Products' }
+      { path: '/product-list', label: 'Todos' },
+      { path: '/create-product', label: 'Crear' },
+      { path: '/low-stock-products', label: 'por agotarse' }
     ]
   },
   { path: '/category-manager', label: 'Category Manager' },

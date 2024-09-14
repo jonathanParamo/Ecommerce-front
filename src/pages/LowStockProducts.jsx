@@ -5,6 +5,7 @@ import LoadingSpinner from "../components/LoaderSpinner";
 import ProductItem from "../components/ProducItem";
 import EditProductForm from "../components/EditProductForm";
 import { useNavigate } from 'react-router-dom';
+import Pagination from "../components/Pagination";
 
 const LowStockProducts = () => {
   const dispatch = useDispatch();
@@ -34,8 +35,10 @@ const LowStockProducts = () => {
   }
 
   return (
-    <div className="p-5 flex flex-col items-center">
-      <h1 className="text-2xl font-semibold mb-5">Productos con Bajo Stock</h1>
+    <div className="p-5 flex flex-col items-center bg-white dark:bg-black h-screen overflow-hidden
+      text-black dark:text-white
+    ">
+      <h1 className="text-xl md:text-3xl font-poppins mb-5">Productos agotados o por agotarse</h1>
       <div className="flex justify-center flex-wrap gap-4 w-full max-w-5xl">
         {products.length === 0 ? (
           <p className="text-gray-600 text-lg">No hay productos con bajo stock.</p>
@@ -52,6 +55,8 @@ const LowStockProducts = () => {
           </ul>
         )}
       </div>
+
+      <Pagination />
 
       {selectedProduct && (
         <div className="mt-5 p-5 border border-gray-300 rounded bg-gray-100">

@@ -43,8 +43,10 @@ const ProductList = () => {
   const totalPages = Math.ceil(total / productsPerPage);
 
   return (
-    <div className="p-5 flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Product List</h1>
+    <div className="p-5 flex flex-col items-center bg-white dark:bg-black">
+      <h1 className="text-xl md:text-3xl font-poppins mb-5">
+        Lista de Productos
+      </h1>
       <div className="flex justify-center flex-wrap gap-4 text-[#4F1271]">
         {products.map(product => (
           <ProductItem
