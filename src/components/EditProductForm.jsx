@@ -202,6 +202,9 @@ function EditProductForm() {
         </div>
 
         <div className="w-full flex justify-center items-center mt-4">
+          <button onClick={() => navigate('/product-list')}>
+            Atras
+          </button>
           <button type="submit">
             Actualizar Producto
           </button>

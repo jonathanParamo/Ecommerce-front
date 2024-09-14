@@ -38,16 +38,16 @@ function Example() {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden">
-      <section className="flex-1 flex flex-col items-start gap-2 p-5 text-gray-800">
-        <h1 className="text-xl font-bold">Users</h1>
+    <div className="h-screen flex overflow-hidden bg-white dark:bg-black text-black dark:text-white font-nunito">
+      <section className="flex-1 flex flex-col items-start gap-2 p-5">
+        <h1 className="text-xl font-bold font-roboto">Users </h1>
         <ul className="list-disc pl-5">
           {users.map((user) => (
             <li key={user.id} className="py-1">{user.name}</li>
           ))}
         </ul>
 
-        <h2 className="text-lg font-semibold mt-4">Persisted User</h2>
+        <h2 className="text-lg font-semibold mt-4 font-poppins">Persisted User</h2>
         <div className="mt-2">
           {user ? (
             <div>
