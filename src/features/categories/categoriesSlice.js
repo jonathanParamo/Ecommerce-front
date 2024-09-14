@@ -78,7 +78,6 @@ export const deleteCategory = createAsyncThunk(
       });
 
       if (!response.ok) {
-      console.log(id, "desderedux", response);
 
         throw new Error('Error al eliminar la categoría');
       }
@@ -113,7 +112,6 @@ const categoriesSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(createCategory.fulfilled, (state, action) => {
-        console.log("Payload en fulfilled:", action.payload);
         state.status = 'succeeded';
         state.categories.push(action.payload);
       })

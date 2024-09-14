@@ -43,7 +43,6 @@ const CategoriesManager = () => {
       setShowModal(false);
       resetForm();
     } catch (error) {
-      console.log(error, "error");
       toast.error("¡Algo salió mal!", error);
     }
   };
@@ -58,13 +57,11 @@ const CategoriesManager = () => {
 
   const handleDelete = async () => {
     try {
-      console.log(categoryId, "categoryid");
       await dispatch(deleteCategory(categoryId)).unwrap();
       toast("¡Categoría eliminada con éxito!");
       setNeedsUpdate(true);
       setShowConfirmModal(false);
     } catch (error) {
-      console.log(error, "error");
       toast.error("¡Algo salió mal al eliminar la categoría!", error);
     }
   };

@@ -8,8 +8,6 @@ function Login() {
   const [error, setError] = useState('');
   const typeUser = import.meta.env.VITE_TYPE_USER;
 
-console.log(typeUser, "type");
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
