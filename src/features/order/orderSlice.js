@@ -14,7 +14,7 @@ export const fetchOrders = createAsyncThunk(
       queryParams.append('page', page);
     }
 
-    const response = await fetch(`${API_URL}?${queryParams.toString()}`,{
+    const response = await fetch(`${API_URL}orders/?${queryParams.toString()}`,{
       credentials: 'include',
     });
 
@@ -27,7 +27,7 @@ export const fetchOrders = createAsyncThunk(
 );
 
 export const fetchOrderById = createAsyncThunk('orders/fetchOrderById', async (orderId) => {
-  const response = await fetch(`${API_URL}/${orderId}`, {
+  const response = await fetch(`${API_URL}orders/${orderId}`, {
     credentials: 'include',
   });
   if (!response.ok) {
@@ -37,7 +37,7 @@ export const fetchOrderById = createAsyncThunk('orders/fetchOrderById', async (o
 });
 
 export const createOrder = createAsyncThunk('orders/createOrder', async (orderData) => {
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_URL}orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export const createOrder = createAsyncThunk('orders/createOrder', async (orderDa
 export const updateOrderStatus = createAsyncThunk('orders/updateOrderStatus',
   async ({ orderId, newStatus }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${API_URL}${orderId}/status`, {
+      const response = await fetch(`${API_URL}orders/${orderId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export const updateOrderStatus = createAsyncThunk('orders/updateOrderStatus',
 );
 
 export const deleteOrder = createAsyncThunk('orders/deleteOrder', async (orderId) => {
-  const response = await fetch(`${API_URL}${orderId}`, {
+  const response = await fetch(`${API_URL}orders/${orderId}`, {
     method: 'DELETE',
     credentials: 'include',
   });

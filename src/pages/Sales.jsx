@@ -13,7 +13,7 @@ const SalesChart = () => {
   useEffect(() => {
     const fetchSalesData = async () => {
       try {
-        const response = await fetch(`${API_URL}sales`, {
+        const response = await fetch(`${API_URL}orders/sales`, {
             method: 'GET',
             credentials: 'include',
             headers: {
