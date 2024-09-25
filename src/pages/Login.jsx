@@ -8,7 +8,6 @@ function Login() {
   const [error, setError] = useState('');
   const typeUser = import.meta.env.VITE_TYPE_USER;
   const API_URL = import.meta.env.VITE_URL_SERVER
-  console.log(API_URL);
 
   const navigate = useNavigate();
 
