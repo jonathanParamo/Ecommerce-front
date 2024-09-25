@@ -33,6 +33,7 @@ function Login() {
         return;
       }
 
+      console.log("Usuario autenticado, navegando a /app/orders");
       navigate('/app/orders')
     } catch (err) {
       setError('Error al iniciar sesión', err);
