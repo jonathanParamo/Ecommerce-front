@@ -33,7 +33,7 @@ function Login() {
         return;
       }
 
-      navigate('/')
+      navigate('/app/orders')
     } catch (err) {
       setError('Error al iniciar sesión', err);
     }
