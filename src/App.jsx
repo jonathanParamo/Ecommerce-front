@@ -18,9 +18,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/app" element={<Layout />}>
+          <Route index element={<Orders />} />
           <Route path="orders" element={<Orders />} />
           <Route path="product-list" element={<ProductListComponent />} />
           <Route path="create-product" element={<ProductManager />} />
