@@ -32,7 +32,6 @@ function SubMenu() {
 
     const handleScroll = () => {
       if (window.scrollY > window.innerHeight) {
-        // Si el usuario se desplaza más allá del h-screen, cerramos el menú
         setIsSubMenuOpen(false);
       }
     };

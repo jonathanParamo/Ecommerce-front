@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from"@reduxjs/toolkit";
 
+const API_URL = import.meta.env.VITE_URL_SERVER || 'http://localhost:4000/api/v1/'
+
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async () => {
-    const response = await fetch("http://localhost:4000/api/v1/users")
+    const response = await fetch(`${API_URL}users`)
     return response.json();
   }
 );

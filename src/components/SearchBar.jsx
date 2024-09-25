@@ -17,7 +17,7 @@ const SearchBar = () => {
   return (
     <>
       {/* Barra de búsqueda para pantallas grandes */}
-      <div className="hidden md:flex w-1/3 h-[32px] flex items-center justify-center bg-white rounded-full border border-gray-300">
+      <div className="hidden md:flex w-3/5 h-[32px] flex items-center justify-center bg-white rounded-full border border-gray-300">
         <input
           type="text"
           value={searchQuery}

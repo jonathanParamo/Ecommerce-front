@@ -1,8 +1,8 @@
 export const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/exa', label: 'Example' },
+  { path: '/orders', label: 'Pedidos' },
   {
-    label: 'Products',  // Categoría principal
+    label: 'Productos',
     subcategories: [
       { path: '/product-list', label: 'Todos' },
       { path: '/create-product', label: 'Crear' },
@@ -10,4 +10,5 @@ export const navLinks = [
     ]
   },
   { path: '/category-manager', label: 'Category Manager' },
+  { path: '/sales', label: 'Info de ventas' },
 ];

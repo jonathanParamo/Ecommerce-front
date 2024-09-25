@@ -1,13 +1,13 @@
 const FormField = ({ label, type, value, onChange, options, multiple, accept, placeholder, required }) => {
   if (type === 'select') {
     return (
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-semibold mb-2">{label}</label>
+      <div className="w-full md:w-2/5">
+        <label className="block font-bold mb-2 dark:text-gray-200">{label}</label>
         <select
           value={value}
           onChange={onChange}
           required={required}
-          className="border border-gray-300 rounded-lg p-2 w-full text-gray-700"
+          className="w-full px-3 py-2 border border-black dark:bg-[#141414] dark:border-gray-600 rounded-md bg-white dark:bg-[#141414] dark:text-white focus:outline-none"
         >
           <option value="" disabled>Select an option</option>
           {options.map(option => (
@@ -22,29 +22,29 @@ const FormField = ({ label, type, value, onChange, options, multiple, accept, pl
 
   if (type === 'file') {
     return (
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-semibold mb-2">{label}</label>
+      <div className="w-full md:w-2/5">
+        <label className="block font-bold mb-2 dark:text-gray-200">{label}</label>
         <input
           type="file"
           multiple={multiple}
           accept={accept}
           onChange={onChange}
-          className="border border-gray-300 rounded-lg p-2 w-full text-gray-700"
+          className="w-full px-3 py-2 border border-black dark:border-gray-600 rounded-md bg-white dark:bg-transparent dark:text-white focus:outline-none"
         />
       </div>
     );
   }
 
   return (
-    <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-semibold mb-2">{label}</label>
+    <div className="w-full md:w-2/5">
+      <label className="block font-bold mb-2 dark:text-gray-200">{label}</label>
       <input
         type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className="border border-gray-300 rounded-lg p-2 w-full text-gray-700"
+        className="w-full px-3 py-2 border border-black dark:border-gray-600 rounded-md bg-white dark:bg-transparent dark:text-white focus:outline-none"
       />
     </div>
   );

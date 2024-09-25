@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const typeUser = import.meta.env.VITE_TYPE_USER;
 
+const API_URL = import.meta.env.VITE_URL_SERVER || 'http://localhost:4000/api/v1/'
 
 // Acción asíncrona para obtener categorías
 export const fetchCategories = createAsyncThunk(
   'categories/fetchCategories',
   async () => {
-    const response = await fetch('http://localhost:4000/api/v1/categories/categories');
+    const response = await fetch(`${API_URL}categories/`);
 
     if (!response.ok) {
       throw new Error('Error al obtener las categorías');
@@ -20,12 +21,12 @@ export const createCategory = createAsyncThunk(
   'categories/createCategory',
   async (categoryData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:4000/api/v1/categories/create', {
+      const response = await fetch(`${API_URL}categories/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({categoryData, role: typeUser}),
+        body: JSON.stringify({categoryData}),
         credentials: 'include',
       });
 
@@ -44,7 +45,7 @@ export const updateCategory = createAsyncThunk(
   'categories/updateCategory',
   async ({ id, name, subcategories }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/categories/categories/${id}`, {
+      const response = await fetch(`${API_URL}categories/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -54,12 +55,13 @@ export const updateCategory = createAsyncThunk(
       });
 
       if (!response.ok) {
-        throw new Error('Error al actualizar la categoría');
+        const errorData = await response.json();
+        return rejectWithValue(errorData.message || 'Error desconocido');
       }
 
       return await response.json();
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || 'Error de conexión');
     }
   }
 );
@@ -68,7 +70,7 @@ export const deleteCategory = createAsyncThunk(
   'categories/deleteCategory',
   async ( id , { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/categories/delete/${id}`, {
+      const response = await fetch(`${API_URL}categories/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +90,6 @@ export const deleteCategory = createAsyncThunk(
     }
   }
 );
-
 
 const categoriesSlice = createSlice({
   name: 'categories',
@@ -116,9 +117,11 @@ const categoriesSlice = createSlice({
         state.categories.push(action.payload);
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
-        const index = state.categories.findIndex((cat) => cat._id === action.payload._id);
+        state.status = 'succeeded';
+        const updatedCategory = action.payload;
+        const index = state.categories.findIndex((cat) => cat._id === updatedCategory._id);
         if (index !== -1) {
-          state.categories[index] = action.payload;
+          state.categories[index] = updatedCategory; // Actualiza la categoría y sus subcategorías
         }
       })
       .addCase(deleteCategory.pending, (state) => {

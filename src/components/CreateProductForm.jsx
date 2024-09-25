@@ -254,7 +254,7 @@ function CreateProductForm() {
         <div className="flex justify-center mt-4 w-full">
           <button
             type="submit"
-            className="w-2/5 cursor-pointer w-full inline-block px-4 py-2 bg-purple-600 dark:bg-transparent
+            className="w-3/5 cursor-pointer w-full inline-block px-4 py-2 bg-purple-600 dark:bg-transparent
             dark:border dark:border-cyan-500 dark:hover:border-cyan-600 text-white font-bold
             rounded-md hover:bg-purple-700 focus:outline-none transition duration-300"
           >

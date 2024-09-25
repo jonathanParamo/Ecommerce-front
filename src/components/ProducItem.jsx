@@ -39,9 +39,9 @@ const ProductItem = ({ product, onEdit }) => {
           />
         )}
         <h2 className="text-lg font-semibold text-gray-800 dark:text-white font-roboto mt-2 mb-1 truncate">{product.name}</h2>
-        <p className="text-gray-700 dark:text-white font-nunito">Price: ${product.discountedPrice}</p>
-        {discount > 0 && <p className="text-gray-700 dark:text-white font-openSands">Discount: {discount}%</p>}
-        <p className="text-gray-600 dark:text-white font-openSands pt-1 pb-2">Category: {product.subcategory}</p>
+        <p className="text-gray-700 dark:text-white font-nunito">Precio: ${product.discountedPrice}</p>
+        {discount > 0 && <p className="text-gray-700 dark:text-white font-openSands">Descuento: {discount}%</p>}
+        <p className="text-gray-600 dark:text-white font-openSands pt-1 pb-2">Categoria: {product.subcategory}</p>
         <button
           onClick={onEdit}
           className="w-full mt-auto py-2 px-4 border-2 border-transparent rounded-md text-white bg-purple-600 cursor-pointer
@@ -63,7 +63,7 @@ const ProductItem = ({ product, onEdit }) => {
           content: {
             width: '80vw',
             height: '80vh',
-            margin: 'auto',
+            margin: '8%',
             padding: 0,
             border: 'none',
             borderRadius: '8px',
@@ -96,16 +96,16 @@ const ProductItem = ({ product, onEdit }) => {
           )}
           <div className="p-4 flex-1 overflow-y-auto text-left w-full">
             <h2 className="text-xl font-bold mb-2">{product.name}</h2>
-            <p><strong>Price:</strong> ${product.priceCOP}</p>
-            <p><strong>Discount:</strong> {product.discountedPrice > 0 ? `${product.discountedPrice}` : 'No Discount'}</p>
-            <p><strong>Discount Start Date:</strong> {discountStartDate}</p>
-            <p><strong>Discount End Date:</strong> {discountEndDate}</p>
-            <p><strong>Category:</strong> {product.categoryId}</p>
-            <p><strong>Subcategory:</strong> {product.subcategory}</p>
-            <p><strong>Description:</strong> {product.description}</p>
-            <p><strong>Quantity:</strong> {product.quantity}</p>
-            <p><strong>Sizes:</strong> {product.sizes.join(', ')}</p>
-            <p><strong>Colors:</strong> {product.colors.join(', ')}</p>
+            <p><strong>Precio:</strong> ${product.priceCOP}</p>
+            <p><strong>Descuento:</strong> {product.discountedPrice > 0 ? `${product.discountedPrice}` : 'Sin descuento'}</p>
+            <p><strong>Inicio del descuento:</strong> {discountStartDate.split('T')[0]}</p>
+            <p><strong>Fin del descuento:</strong> {discountEndDate.split('T')[0]}</p>
+            <p><strong>Categoría:</strong> {product.categoryId}</p>
+            <p><strong>Subcategoría:</strong> {product.subcategory}</p>
+            <p><strong>Descripción:</strong> {product.description}</p>
+            <p><strong>Unidades disponibles:</strong> {product.quantity}</p>
+            <p><strong>Tamaños:</strong> {product.sizes.join(', ')}</p>
+            <p><strong>Colores:</strong> {product.colors.join(', ')}</p>
           </div>
           <button
             onClick={closeModal}

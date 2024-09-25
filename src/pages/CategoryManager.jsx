@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingSpinner from '../components/LoaderSpinner';
 import ReactModal from 'react-modal';
+import ErrorMesaage from "../components/ErrorMessage";
 
 const CategoriesManager = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,6 @@ const CategoriesManager = () => {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState('');
   const [subcategories, setSubcategories] = useState('');
-  const [needsUpdate, setNeedsUpdate] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -39,11 +39,11 @@ const CategoriesManager = () => {
         toast("¡Categoría creada con éxito!");
       }
 
-      setNeedsUpdate(true);
       setShowModal(false);
       resetForm();
+      dispatch(fetchCategories());
     } catch (error) {
-      toast.error("¡Algo salió mal!", error);
+      toast.error("Error al actualizar la categoria", error);
     }
   };
 
@@ -59,8 +59,8 @@ const CategoriesManager = () => {
     try {
       await dispatch(deleteCategory(categoryId)).unwrap();
       toast("¡Categoría eliminada con éxito!");
-      setNeedsUpdate(true);
       setShowConfirmModal(false);
+      dispatch(fetchCategories());
     } catch (error) {
       toast.error("¡Algo salió mal al eliminar la categoría!", error);
     }
@@ -77,7 +77,7 @@ const CategoriesManager = () => {
     <div className="w-full min-h-screen flex flex-col items-center p-4 bg-white dark:bg-black">
       <h1 className="text-4xl font-bold font-roboto mb-6 text-black dark:text-white">Categorías</h1>
       {status === 'loading' && <LoadingSpinner />}
-      {status === 'failed' && <p className="text-red-600 dark:text-red-400">Error al cargar las categorías</p>}
+      {status === 'failed' &&  <ErrorMesaage message="Error al cargar las categorías" />}
       {status === 'succeeded' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full p-2">
           {categories.map((cat) => (

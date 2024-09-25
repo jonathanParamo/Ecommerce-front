@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+const API_URL = import.meta.env.VITE_URL_SERVER || 'http://localhost:4000/api/v1/'
+
 // Acción asíncrona para obtener productos
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (params) => {
     const { page = 1, limit = 20, category, subcategory } = params;
 
-    const url = new URL('http://localhost:4000/api/v1/products/get-products');
+    const url = new URL(`${API_URL}products/`);
     url.searchParams.append('page', page);
     url.searchParams.append('limit', limit);
     if (category) {
@@ -35,9 +37,10 @@ export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:4000/api/v1/products/create-product', {
+      const response = await fetch(`${API_URL}products/`, {
         method: 'POST',
         body: formData,
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -56,9 +59,10 @@ export const updateProduct = createAsyncThunk(
   async ({ productId, formData }, { rejectWithValue }) => {
 
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/products/update-product/${productId}`, {
-        method: 'PUT',
+      const response = await fetch(`${API_URL}products/${productId}`, {
+        method: 'PATCH',
         body: formData,
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -78,7 +82,7 @@ export const fetchLowStockProducts = createAsyncThunk(
     const { page = 1, limit = 20, category, subcategory } = params;
 
     // Construye la URL con los parámetros de consulta
-    const url = new URL('http://localhost:4000/api/v1/products/low-stock');
+    const url = new URL(`${API_URL}products/low-stock`);
     url.searchParams.append('limit', limit);
     url.searchParams.append('page', page);
     if (category) {
@@ -102,9 +106,6 @@ export const fetchLowStockProducts = createAsyncThunk(
     return data;
   }
 );
-
-
-
 
 const productsSlice = createSlice({
   name: 'products',

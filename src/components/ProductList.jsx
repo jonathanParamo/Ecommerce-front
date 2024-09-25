@@ -43,7 +43,7 @@ const ProductList = () => {
   const totalPages = Math.ceil(total / productsPerPage);
 
   return (
-    <div className="p-5 flex flex-col items-center bg-white dark:bg-black">
+    <div className="p-5 flex flex-col items-center bg-white dark:bg-black dark:text-white">
       <h1 className="text-xl md:text-3xl font-poppins mb-5">
         Lista de Productos
       </h1>

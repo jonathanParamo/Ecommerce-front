@@ -7,6 +7,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const typeUser = import.meta.env.VITE_TYPE_USER;
+  const API_URL = import.meta.env.VITE_URL_SERVER
+  console.log(API_URL);
 
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/v1/users/login-admin', {
+      const response = await fetch(`${API_URL}users/login-admin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, role: typeUser }),
