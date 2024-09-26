@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import ThemeToggleButton from '../components/ThemeSwitcher';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../features/user/userSlice';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
   const typeUser = import.meta.env.VITE_TYPE_USER;
   const API_URL = import.meta.env.VITE_URL_SERVER
 
@@ -15,7 +18,7 @@ function Login() {
     e.preventDefault();
 
     if (!email || !password) {
-      setError('Todos los campos son requeridos');
+      toast.error('Todos los campos son requeridos');
       return;
     }
 
@@ -23,20 +26,22 @@ function Login() {
       const response = await fetch(`${API_URL}users/login-admin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, role: typeUser }),
+        body: JSON.stringify({ email, password }),
         credentials: 'include',
       });
+
+      if(!response.ok) {
+        const data = await response.json();
+        toast.error(data.message || 'Error al iniciar sesión');
+        return
+      }
       const data = await response.json();
 
-      if (data.user.role !== typeUser) {
-        setError('Acceso denegado. Solo los administradores pueden ingresar.');
-        return;
-      }
-
-      console.log("Usuario autenticado, navegando a /app/orders");
+      dispatch(addUser(data.user));
       navigate('/app/orders')
+      toast.success('Inicio de sesión exitoso')
     } catch (err) {
-      setError('Error al iniciar sesión', err);
+      toast.error('Error al iniciar sesión', err);
     }
   };
 
@@ -44,7 +49,6 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black">
       <div className="bg-white dark:bg-[#141414] p-8 rounded-lg shadow-md w-full max-w-md text-black dark:text-white">
         <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Iniciar Sesión</h1>
-        {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium">
@@ -86,6 +90,7 @@ function Login() {
       <div className="fixed bottom-0 right-0 m-4">
         <ThemeToggleButton />
       </div>
+      <ToastContainer />
     </div>
   );
 }
