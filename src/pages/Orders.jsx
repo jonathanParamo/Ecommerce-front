@@ -38,23 +38,29 @@ const OrdersComponent = () => {
       <h1 className="text-3xl font-bold mb-6 text-black dark:text-white">Pedidos</h1>
 
       {/* Filtro de estado */}
-      <div className="mb-4 w-full flex justify-between px-3">
-        <label htmlFor="filter-status" className="block text-black dark:text-white mb-2 text-2xl font-roboto">Filtrar por estado:</label>
-        <select
-          id="filter-status"
-          value={selectedStatus}
-          onChange={handleFilterChange}
-          className="p-2 border-2 border-purple-800 dark:border-gray-100 rounded dark:bg-[#141414]
-          dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">Todos</option>
-          <option value="pending">Pendiente</option>
-          <option value="in-progress">En progreso</option>
-          <option value="shipped">Enviado</option>
-          <option value="delivered">Entregado</option>
-          <option value="canceled">Cancelado</option>
-        </select>
-      </div>
+      <div className="mb-4 w-full flex justify-between items-center px-3">
+      <label
+        htmlFor="filter-status"
+        className="block text-base md:text-2xl font-medium text-gray-900 dark:text-gray-100 mb-2">
+        Filtrar por estado:
+      </label>
+      <select
+        id="filter-status"
+        value={selectedStatus}
+        onChange={handleFilterChange}
+        className="p-2 border-2 border-purple-500 dark:border-gray-600 rounded-lg bg-white dark:bg-[#141414]
+                  text-black dark:text-white focus:outline-none bg-purple-50
+                  transition-colors duration-300 ease-in-out"
+      >
+        <option value="">Todos</option>
+        <option value="pending">Pendiente</option>
+        <option value="in-progress">En progreso</option>
+        <option value="shipped">Enviado</option>
+        <option value="delivered">Entregado</option>
+        <option value="canceled">Cancelado</option>
+      </select>
+    </div>
+
 
       {status === 'loading' && <LoadingSpinner />}
       {status === 'failed' && <p className="text-red-600 dark:text-red-400">{error}</p>}

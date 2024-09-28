@@ -25,7 +25,7 @@ const ProductList = () => {
 
   const handleEditClick = (product) => {
     let productId = product._id;
-    navigate(`/edit-product/${productId}`);
+    navigate(`/app/edit-product/${productId}`);
   };
 
   const handleCloseEditForm = () => {
