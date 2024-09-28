@@ -36,7 +36,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isAuthenticated === false) {
-      navigate('/login');
+      navigate('/');
     }
   }, [isAuthenticated, navigate]);
 

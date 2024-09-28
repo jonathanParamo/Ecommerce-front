@@ -9,7 +9,6 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const typeUser = import.meta.env.VITE_TYPE_USER;
   const API_URL = import.meta.env.VITE_URL_SERVER
 
   const navigate = useNavigate();
